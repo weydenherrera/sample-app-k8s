@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web
-  namespace: default
+  namespace: ticket-1-testing
 spec:
   ports:
   - nodePort: 30001
@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
-  namespace: default
+  namespace: ticket-1-testing
 spec:
   selector:
     matchLabels:
