@@ -1,21 +1,34 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: v1
+kind: Service
 metadata:
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-  name: ticket-1-testing
-  namespace: argocd
+  name: web
+  namespace: default
 spec:
-  project: default
-  source:
-    path: testing/review-app
-    repoURL: https://github.com/weydenherrera/sample-app-k8s.git
-    targetRevision: ticket-1-testing
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: ticket-1-testing
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: true
+  ports:
+  - nodePort: 30001
+    port: 4000
+    targetPort: 4000
+  selector:
+    app: web
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - image: weydenherrera/sample-app:latest
+        imagePullPolicy: IfNotPresent
+        name: web
+        ports:
+        - containerPort: 4000
