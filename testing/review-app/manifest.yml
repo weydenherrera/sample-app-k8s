@@ -24,7 +24,7 @@ spec:
         app: web
     spec:
       containers:
-      - image: weydenherrera/sample-app:latest
+      - image: weydenherrera/sample-app:2023-01-20_12-56-37.95_PST@sha256:ad6dd5009ef9edab048a3b0c4dcfb648409566bf882a74e0f1af09ca2c833b0c
         imagePullPolicy: IfNotPresent
         name: web
         ports:
