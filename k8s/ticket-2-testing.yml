@@ -10,7 +10,7 @@ spec:
   source:
     path: testing/review-app
     repoURL: https://github.com/weydenherrera/sample-app-k8s.git
-    targetRevision: ticket-2-testing
+    targetRevision: ticket-2testing
   destination:
     server: https://kubernetes.default.svc
     namespace: ticket-2-testing
